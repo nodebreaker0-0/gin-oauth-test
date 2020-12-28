@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/gin-gonic/contrib/sessions"
+	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/nodebreaker0-0/gin-oauth-test/handlers"
 	"github.com/nodebreaker0-0/gin-oauth-test/middleware"
@@ -22,20 +23,30 @@ func main() {
 	})
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
+
 	router.Use(sessions.Sessions("goquestsession", store))
 	router.Static("/css", "./static/css")
 	router.Static("/img", "./static/img")
 	router.LoadHTMLGlob("templates/*")
 
-	router.GET("/", handlers.IndexHandler)
+	//router.GET("/", handlers.IndexHandler)
 	router.GET("/login", handlers.LoginHandler)
 	router.GET("/auth", handlers.AuthHandler)
 
-	authorized := router.Group("/battle")
-	authorized.Use(middleware.AuthorizeRequest())
+	router.Use(middleware.AuthorizeRequest())
 	{
-		authorized.GET("/field", handlers.FieldHandler)
+		router.Use(static.Serve("/", static.LocalFile("./build", true)))
 	}
+	//authorized := router.Group("/")
+	//authorized.Use(static.Serve("/", static.LocalFile("./build", true)))
+	//authorized.Use(middleware.AuthorizeRequest())
+	//{
+	//	authorized.GET("/", func(c *gin.Context) {
+	//		c.JSON(http.StatusOK, gin.H{
+	//			"message": "pong",
+	//		})
+	//	})
+	//}
 
 	if err := router.Run("0.0.0.0:3000"); err != nil {
 		log.Fatal(err)

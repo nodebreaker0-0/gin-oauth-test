@@ -61,11 +61,6 @@ func init() {
 	}
 }
 
-// IndexHandler handles the location /.
-func IndexHandler(c *gin.Context) {
-	c.HTML(http.StatusOK, "index.tmpl", gin.H{})
-}
-
 // AuthHandler handles authentication of a user and initiates a session.
 func AuthHandler(c *gin.Context) {
 	// Handle the exchange code to initiate a transport.
@@ -107,8 +102,7 @@ func AuthHandler(c *gin.Context) {
 		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{"message": "Error while saving session. Please try again."})
 		return
 	}
-
-	c.HTML(http.StatusOK, "battle.tmpl", gin.H{"email": u.Email, "seen": "seen"})
+	c.HTML(http.StatusOK, "validator.tmpl", gin.H{"link": "/"})
 }
 
 // LoginHandler handles the login procedure.
@@ -127,11 +121,4 @@ func LoginHandler(c *gin.Context) {
 	}
 	link := getLoginURL(state)
 	c.HTML(http.StatusOK, "auth.tmpl", gin.H{"link": link})
-}
-
-// FieldHandler is a rudementary handler for logged in users.
-func FieldHandler(c *gin.Context) {
-	session := sessions.Default(c)
-	userID := session.Get("user-id")
-	c.HTML(http.StatusOK, "field.tmpl", gin.H{"user": userID})
 }

@@ -13,7 +13,7 @@ func AuthorizeRequest() gin.HandlerFunc {
 		session := sessions.Default(c)
 		v := session.Get("user-id")
 		if v == nil {
-			c.HTML(http.StatusUnauthorized, "error.tmpl", gin.H{"message": "Please login."})
+			c.HTML(http.StatusUnauthorized, "error_login.tmpl", gin.H{"message": "Please login.", "link": "/login"})
 			c.Abort()
 		}
 		c.Next()
