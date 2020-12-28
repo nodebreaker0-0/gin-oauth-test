@@ -108,7 +108,7 @@ func AuthHandler(c *gin.Context) {
 		return
 	}
 
-	c.HTML(http.StatusOK, "battle.tmpl", gin.H{"email": u.Email, "seen": seen})
+	c.HTML(http.StatusOK, "battle.tmpl", gin.H{"email": u.Email, "seen": "seen"})
 }
 
 // LoginHandler handles the login procedure.

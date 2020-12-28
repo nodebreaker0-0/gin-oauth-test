@@ -37,7 +37,7 @@ func main() {
 		authorized.GET("/field", handlers.FieldHandler)
 	}
 
-	if err := router.Run("127.0.0.1:3000"); err != nil {
+	if err := router.Run("0.0.0.0:3000"); err != nil {
 		log.Fatal(err)
 	}
 }
