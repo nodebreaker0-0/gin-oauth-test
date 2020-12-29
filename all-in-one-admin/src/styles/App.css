@@ -1,0 +1,27 @@
+/* 
+거버넌스 => 현재 라이브 된거, 새로운 프로포절이 올라오면 얼럿, 우리가 보팅했는지 안했는지, reward, 잔고, 리워드, (이자 커미션 잔고)
+테라의 경우 스테이킹 토큰, 이자토큰도 종류가 여러개
+*/
+
+/* 
+argon admin react ds
+템플릿, 
+*/
+
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

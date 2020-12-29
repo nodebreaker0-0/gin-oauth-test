@@ -35,7 +35,7 @@ func main() {
 
 	router.Use(middleware.AuthorizeRequest())
 	{
-		router.Use(static.Serve("/", static.LocalFile("./build", true)))
+		router.Use(static.Serve("/", static.LocalFile("./all-in-one-admin/build", true)))
 	}
 	//authorized := router.Group("/")
 	//authorized.Use(static.Serve("/", static.LocalFile("./build", true)))
@@ -51,4 +51,7 @@ func main() {
 	if err := router.RunTLS(":443", "./server.crt", "./server.key"); err != nil {
 		log.Fatal(err)
 	}
+
+	//test
+	// router.Run(":8080")
 }

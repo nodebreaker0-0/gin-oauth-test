@@ -1,17 +1,14 @@
 body {
-    background-image: url("/img/background.png");
-    background-color: #cccccc;
+    background-color:#252734;
 }
 
 h1 {
     text-align: center;
-    /*color: green;*/
-    /*text-decoration: overline;*/
-    text-shadow: 2px 2px #ff0000;
+    color: #ffaf29;
 }
 
-button {
-    background-color: #4CAF50; /* Green */
+.login-button {
+    background-color: #ffaf29; /* Green */
     border: none;
     color: white;
     padding: 15px 32px;
@@ -20,7 +17,24 @@ button {
     display: inline-block;
     font-size: 16px;
     border-radius: 12px;
-    position: absolute;
-    top: 45%;
-    left: 42%;
+    margin: 0 auto;
+    width:152px;
+    display: block;
+    
 }
+
+.login-card {
+    background-image: url("/img/milky-way.png");
+    width: 314px;
+    display: block;
+    padding: 15px 15px 35px;
+    border-radius: 12px;
+    margin: 150px auto 0;
+    -webkit-box-shadow: 4px 8px 15px 0px #000000; 
+    box-shadow: 4px 8px 15px 0px #000000;
+}
+
+html {
+    height: 100vh;
+}
+

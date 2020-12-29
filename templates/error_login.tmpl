@@ -3,11 +3,17 @@
       type="image/png"
       href="/img/favicon.ico" />
 <html>
-  <head>
+   <head>
     <link rel="stylesheet" href="/css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="B-Harvest admin" />
+  <title>B-Harvest Admin | Error</title>
   </head>
   <body>
     <h1>{{ .message }}</h1>
-    <a href="{{ .link }}"><button>Login with Google!</button></a>
+    <a href="{{ .link }}" class="login-button">Go Login Page</a>
   </body>
+  <script>
+    window.location.href = "/login"
+  </script>
 </html>

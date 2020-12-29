@@ -1,0 +1,109 @@
+.File-upload {
+    margin-top: 100px;
+    color:#333;
+}
+  
+.File-upload_infotext {
+    margin-bottom: 30px;
+    font-size:1rem;
+}
+
+.File-button_upload {
+    width: 130px;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size:1.1rem;
+    background-color: #fff;
+    color:#b57505;
+    border-radius: 4px;
+
+}
+
+.File-button_query {
+    width: 120px;
+    height: 40px;
+
+    font-size:1.1rem;
+    background-color: #fff;
+    color:#b57505;
+
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    margin: 0 30px;
+}
+
+.File-button_withdraw {
+    width: 160px;
+    height: 40px;
+    
+    font-size:1.1rem;
+    background-color: #fff;
+    color:#b57505;
+
+    outline: none;
+    border: none;
+    border-radius: 4px;
+   
+}
+
+.Address-list {
+    width: 90%;
+    
+    margin: 0 auto;
+    padding: 0 12px 20px;
+    border-radius: 4px;
+    
+    margin-bottom: 40px;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 5px 9px 2px rgba(20, 18, 12, 0.15);
+    -moz-box-shadow: 0px 5px 9px 2px rgba(20, 18, 12, 0.15);
+    box-shadow: 0px 5px 9px 2px rgba(20, 18, 12, 0.15);
+}
+
+.Address-list_oracle {
+    font-weight: bold;
+    padding:20px 12px;
+    
+    border-bottom: 1px solid  #b3b3b3;
+}
+
+.Address-list_pair {
+    line-height: 30px;
+   
+}
+
+.Address-list_total {
+    margin-top:20px;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+.Address-list_index {
+    display: flex;
+    line-height: 40px;
+    border-bottom: 1px solid #b3b3b3;
+}
+
+.Address-list_index__pair {
+    flex: 2;
+    border-right: 1px solid #b3b3b3;
+    border-left: 1px solid #b3b3b3;
+}
+
+.Address-list_index__address {
+    flex: 6;
+    border-right: 1px solid #b3b3b3;
+}
+
+.Address-list_index__reward {
+    flex: 2;
+    border-right: 1px solid #b3b3b3;
+}
+
+.u-boxshadow {
+    -webkit-box-shadow: 0px 5px 9px 2px rgba(20, 18, 12, 0.2);
+    -moz-box-shadow: 0px 5px 9px 2px rgba(20, 18, 12, 0.2);
+    box-shadow: 0px 5px 9px 2px rgba(20, 18, 12, 0.2);
+}

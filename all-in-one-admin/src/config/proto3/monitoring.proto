@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package monitoring;
+
+// 노드 상태 조회 서비스
+service Monitoring {
+    rpc GetnodeStatus (StatusRequest) returns (StatusResponse);
+    rpc GetvalidatorSignInfo (SignInfoRequest) returns (SignInfoResponse);
+}
+
+// 요청
+message StatusRequest {
+    string nodeURI = 1;
+}
+
+// 응답
+message StatusResponse {
+    string status = 1;
+}
+
+// 요청
+message SignInfoRequest {
+    string validator_address = 1;
+    string nodeURI = 2;
+}
+
+// 응답
+message SignInfoResponse {
+    string status = 1;
+}
