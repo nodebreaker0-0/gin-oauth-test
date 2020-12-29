@@ -48,7 +48,9 @@ func main() {
 	//	})
 	//}
 
-	if err := router.RunTLS(":443", "./server.crt", "./server.key"); err != nil {
-		log.Fatal(err)
-	}
+	// if err := router.RunTLS(":443", "./server.crt", "./server.key"); err != nil {
+	// 	log.Fatal(err)
+	// }
+
+	router.Run(":8080")
 }
