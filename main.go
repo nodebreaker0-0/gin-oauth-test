@@ -43,7 +43,4 @@ func main() {
 	if err := router.RunTLS(":443", "./server.crt", "./server.key"); err != nil {
 		log.Fatal(err)
 	}
-
-	//test
-	// router.Run(":8080")
 }
