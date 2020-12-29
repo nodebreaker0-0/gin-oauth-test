@@ -18,13 +18,15 @@ func main() {
 	}
 	store := sessions.NewCookieStore([]byte(token))
 	store.Options(sessions.Options{
-		Path:   "/",
-		MaxAge: 86400 * 7,
+		Path:     "/",
+		MaxAge:   600,
+		HttpOnly: true,
+		Secure:   true,
 	})
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
 
-	router.Use(sessions.Sessions("goquestsession", store))
+	router.Use(sessions.Sessions("adminsession", store))
 	router.Static("/css", "./static/css")
 	router.Static("/img", "./static/img")
 	router.LoadHTMLGlob("templates/*")

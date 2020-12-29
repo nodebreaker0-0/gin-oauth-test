@@ -127,6 +127,7 @@ func LoginHandler(c *gin.Context) {
 	c.HTML(http.StatusOK, "auth.tmpl", gin.H{"link": link})
 }
 
+//You need to change it to be a little more communication efficient.
 func GetnodeStatusHandler(c *gin.Context) {
 	conn, err := grpc.Dial("localhost:8088", grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {

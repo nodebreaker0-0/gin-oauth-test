@@ -8,6 +8,7 @@ import (
 )
 
 // AuthorizeRequest is used to authorize a request for a certain end-point group.
+// It needs to be changed in a more secure way later.
 func AuthorizeRequest() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		session := sessions.Default(c)
