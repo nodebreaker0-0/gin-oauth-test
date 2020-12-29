@@ -1,0 +1,70 @@
+{
+  "name": "b-harvest-admin",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@craco/craco": "^5.7.0",
+    "@testing-library/jest-dom": "^5.11.5",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "google-protobuf": "^3.13.0",
+    "grpc-web": "^1.2.1",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.5.1",
+    "node-sass": "^4.14.1",
+    "prettier": "^2.1.2",
+    "protobufjs": "^6.10.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-redux": "^7.2.2",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.0",
+    "redux": "^4.0.5",
+    "styled-components": "^5.2.1",
+    "styled-normalize": "^8.0.7",
+    "web-vitals": "^0.2.4",
+    "web3": "^1.3.1"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "proto-build": "protoc -I=. ./src/config/proto3/monitoring.proto --js_out=import_style=commonjs:. --grpc-web_out=import_style=commonjs,mode=grpcwebtext:."
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "ignorePatterns": [
+      "./src/config/"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "craco-alias": "^2.1.1",
+    "redux-devtools": "^3.7.0"
+  }
+}
