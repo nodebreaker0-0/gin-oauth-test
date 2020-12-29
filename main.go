@@ -36,17 +36,9 @@ func main() {
 	router.Use(middleware.AuthorizeRequest())
 	{
 		router.Use(static.Serve("/", static.LocalFile("./all-in-one-admin/build", true)))
+		router.GET("/GetnodeStatus", handlers.GetnodeStatusHandler)
+		router.GET("/GetvalidatorSignInfo", handlers.GetvalidatorSignInfo)
 	}
-	//authorized := router.Group("/")
-	//authorized.Use(static.Serve("/", static.LocalFile("./build", true)))
-	//authorized.Use(middleware.AuthorizeRequest())
-	//{
-	//	authorized.GET("/", func(c *gin.Context) {
-	//		c.JSON(http.StatusOK, gin.H{
-	//			"message": "pong",
-	//		})
-	//	})
-	//}
 
 	if err := router.RunTLS(":443", "./server.crt", "./server.key"); err != nil {
 		log.Fatal(err)

@@ -4,20 +4,21 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"encoding/json"
+	"github.com/gin-gonic/contrib/sessions"
+	"github.com/gin-gonic/gin"
+	pb "github.com/nodebreaker0-0/gin-oauth-test/config"
+	"github.com/nodebreaker0-0/gin-oauth-test/structs"
+	"golang.org/x/oauth2"
+	"golang.org/x/oauth2/google"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
-
-	"github.com/gin-gonic/contrib/sessions"
-	"github.com/gin-gonic/gin"
-	"github.com/nodebreaker0-0/gin-oauth-test/structs"
-	"golang.org/x/oauth2"
-	"golang.org/x/oauth2/google"
 )
 
 var cred Credentials
 var conf *oauth2.Config
+var connect pb.MonitoringClient
 
 // Credentials which stores google ids.
 type Credentials struct {
@@ -59,6 +60,13 @@ func init() {
 		},
 		Endpoint: google.Endpoint,
 	}
+
+	conn, err := grpc.Dial("localhost:8088", grpc.WithInsecure(), grpc.WithBlock())
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
+	defer conn.Close()
+	connect = pb.NewMonitoringClient(conn)
 }
 
 // AuthHandler handles authentication of a user and initiates a session.
@@ -121,4 +129,34 @@ func LoginHandler(c *gin.Context) {
 	}
 	link := getLoginURL(state)
 	c.HTML(http.StatusOK, "auth.tmpl", gin.H{"link": link})
+}
+
+func GetnodeStatusHandler(c *gin.Context) {
+	nodeuri := c.Query("nodeuri")
+	var rawJSON []byte = []byte(`"{\"status\": \"latest_block_height\"}"`)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+	r, err := connect.GetnodeStatus(ctx, &pb.StatusRequest{NodeURI: nodeuri})
+	if err != nil {
+		log.Fatalf("could not GertnodeStatus: %v", err)
+	}
+	log.Printf("Config: %v", r)
+
+	c.JSON(http.StatusOK, gin.H{"status": r.Status})
+}
+
+//
+func GetvalidatorSignInfo(c *gin.Context) {
+	nodeuri := c.Query("nodeuri")
+	validator := c.Query("validatoraddress")
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+	q, err := connect.GetvalidatorSignInfo(ctx, &pb.SignInfoRequest{NodeURI: nodeuri, ValidatorAddress: validator}) //CADDDE4BF216A677736DF9487C3C0D0228CE3256
+	if err != nil {
+		log.Fatalf("could not request2: %v", err)
+	}
+	log.Printf("Config: %v", q)
+
+	c.JSON(http.StatusOK, gin.H{"status": q.Status})
 }
